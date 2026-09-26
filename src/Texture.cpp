@@ -151,12 +151,57 @@ namespace tbaricault::graphics
         ));
     }
 
+    int Texture::getMipmapBaseLevel() const noexcept
+    {
+        GLint result;
+        glGetTextureParameteriv(this->_handle, GL_TEXTURE_BASE_LEVEL, &result);
+        return (result);
+    }
+
+    int Texture::getMipmapMaxLevel() const noexcept
+    {
+        GLint result;
+        glGetTextureParameteriv(this->_handle, GL_TEXTURE_MAX_LEVEL, &result);
+        return (result);
+    }
+
+    float Texture::getMinLOD() const noexcept
+    {
+        GLfloat result;
+        glGetTextureParameterfv(this->_handle, GL_TEXTURE_MIN_LOD, &result);
+        return (result);
+    }
+
+    float Texture::getMaxLOD() const noexcept
+    {
+        GLfloat result;
+        glGetTextureParameterfv(this->_handle, GL_TEXTURE_MAX_LOD, &result);
+        return (result);
+    }
+
+    float Texture::getLODBias() const noexcept
+    {
+        GLfloat result;
+        glGetTextureParameterfv(this->_handle, GL_TEXTURE_LOD_BIAS, &result);
+        return (result);
+    }
+
+    Texture::Compare Texture::getCompare() const noexcept
+    {
+        GLint result;
+        glGetTextureParameteriv(this->_handle, GL_TEXTURE_COMPARE_MODE, &result);
+        if (result == GL_NONE)
+            return (Compare::None);
+        glGetTextureParameteriv(this->_handle, GL_TEXTURE_COMPARE_FUNC, &result);
+        return (static_cast<Compare>(result));
+    }
+
     const tbaricault::math::Vector2<int>& Texture::getSize() const noexcept
     {
         return (this->_size);
     }
 
-    int Texture::getMipmaps() const noexcept
+    int Texture::getMipmapLevels() const noexcept
     {
         return (this->_mipmaps);
     }
@@ -197,6 +242,48 @@ namespace tbaricault::graphics
         return;
     }
 
+    void Texture::setMipmapBaseLevel(int value) noexcept
+    {
+        glTextureParameteri(this->_handle, GL_TEXTURE_BASE_LEVEL, value);
+        return;
+    }
+
+    void Texture::setMipmapMaxLevel(int value) noexcept
+    {
+        glTextureParameteri(this->_handle, GL_TEXTURE_MAX_LEVEL, value);
+        return;
+    }
+
+    void Texture::setMinLOD(float value) noexcept
+    {
+        glTextureParameterf(this->_handle, GL_TEXTURE_MIN_LOD, value);
+        return;
+    }
+
+    void Texture::setMaxLOD(float value) noexcept
+    {
+        glTextureParameterf(this->_handle, GL_TEXTURE_MAX_LOD, value);
+        return;
+    }
+
+    void Texture::setLODBias(float value) noexcept
+    {
+        glTextureParameterf(this->_handle, GL_TEXTURE_LOD_BIAS, value);
+        return;
+    }
+
+    void Texture::setCompare(Compare value) noexcept
+    {
+        if (value == Compare::None)
+            glTextureParameteri(this->_handle, GL_TEXTURE_COMPARE_MODE, static_cast<GLint>(value));
+        else
+        {
+            glTextureParameteri(this->_handle, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_REF_TO_TEXTURE);
+            glTextureParameteri(this->_handle, GL_TEXTURE_COMPARE_FUNC, static_cast<GLint>(value));
+        }
+        return;
+    }
+
     void Texture::setSize(const tbaricault::math::Vector2<int>& value) noexcept
     {
         if (this->_handle)
@@ -210,7 +297,11 @@ namespace tbaricault::graphics
         this->_size = value;
         glCreateTextures(GL_TEXTURE_2D, 1, &this->_handle);
         if (this->_handle)
+        {
             glTextureStorage2D(this->_handle, this->_mipmaps, GL_RGBA8, this->_size.x, this->_size.y);
+            if (this->_mipmaps == 1)
+                this->setMagFilter(Filter::NearestMipmapLinear);
+        }
         return;
     }
 

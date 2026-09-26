@@ -19,7 +19,7 @@ namespace tbaricault::graphics
 {
 
     /**
-     * @brief Wrapper around an OpenGL texture
+     * @brief Wrapper around an OpenGL 2D texture
      */
     class Texture final
     {
@@ -97,9 +97,74 @@ namespace tbaricault::graphics
 
             };
 
+            /**
+             * @brief Texture comparison mode for currently bound depth textures
+             */
+            enum class CompareMode
+            {
+
+                /**
+                 * @brief Specifies that the interpolated and clamped r texture coordinate should be compared to the value in the currently bound depth texture
+                 */
+                RefToTexture = GL_COMPARE_REF_TO_TEXTURE,
+
+            };
 
             /**
-             * @brief Manage a texture binding lifetime
+             * @brief Comparison operator
+             */
+            enum class Compare
+            {
+
+                /**
+                 * @brief Specifies that the red channel should be assigned the appropriate value from the currently bound depth texture
+                 */
+                None = GL_NONE,
+
+                /**
+                 * @brief Specifies that the interpolated and clamped r texture coordinate should be compared to the value in the currently bound depth texture with function `result = 1`
+                 */
+                Always = GL_ALWAYS,
+
+                /**
+                 * @brief Specifies that the interpolated and clamped r texture coordinate should be compared to the value in the currently bound depth texture with function `result = (r == Dt)`
+                 */
+                Equal = GL_EQUAL,
+
+                /**
+                 * @brief Specifies that the interpolated and clamped r texture coordinate should be compared to the value in the currently bound depth texture with function `result = (r >= Dt)`
+                 */
+                GEqual = GL_GEQUAL,
+
+                /**
+                 * @brief Specifies that the interpolated and clamped r texture coordinate should be compared to the value in the currently bound depth texture with function `result = (r > Dt)`
+                 */
+                Greater = GL_GREATER,
+
+                /**
+                 * @brief Specifies that the interpolated and clamped r texture coordinate should be compared to the value in the currently bound depth texture with function `result = (r <= Dt)`
+                 */
+                LEqual = GL_LEQUAL,
+
+                /**
+                 * @brief Specifies that the interpolated and clamped r texture coordinate should be compared to the value in the currently bound depth texture with function `result = (r < Dt)`
+                 */
+                Less = GL_LESS,
+
+                /**
+                 * @brief Specifies that the interpolated and clamped r texture coordinate should be compared to the value in the currently bound depth texture with function `result = 0`
+                 */
+                Never = GL_NEVER,
+
+                /**
+                 * @brief Specifies that the interpolated and clamped r texture coordinate should be compared to the value in the currently bound depth texture with function `result = (r != Dt)`
+                 */
+                NotEqual = GL_NOTEQUAL,
+
+            };
+
+            /**
+             * @brief Manages a texture binding lifetime
              */
             class BindGuard
             {
@@ -271,6 +336,48 @@ namespace tbaricault::graphics
             Wrap getWrapT() const noexcept;
 
             /**
+             * @brief Returns the index of the lowest mipmap level used for texture sampling
+             * 
+             * @return Level index
+             */
+            int getMipmapBaseLevel() const noexcept;
+
+            /**
+             * @brief Returns the index of the highest mipmap level used for texture sampling
+             * 
+             * @return Level index
+             */
+            int getMipmapMaxLevel() const noexcept;
+
+            /**
+             * @brief Returns the minimum level-of-detail
+             * 
+             * @return Level-of-detail
+             */
+            float getMinLOD() const noexcept;
+
+            /**
+             * @brief Returns the maximum level-of-detail
+             * 
+             * @return Level-of-detail
+             */
+            float getMaxLOD() const noexcept;
+
+            /**
+             * @brief Returns the level-of-detail fixed bias
+             * 
+             * @return Bias
+             */
+            float getLODBias() const noexcept;
+
+            /**
+             * @brief Returns the texture comparison mode for currently bound depth textures
+             * 
+             * @returns Comparison mode
+             */
+            Compare getCompare() const noexcept;
+
+            /**
              * @brief Returns the texture border color
              * 
              * @return Color
@@ -289,7 +396,7 @@ namespace tbaricault::graphics
              * 
              * @return Number of mipmap levels
              */
-            int getMipmaps() const noexcept;
+            int getMipmapLevels() const noexcept;
 
             /**
              * @brief Sets the minifying function
@@ -302,6 +409,8 @@ namespace tbaricault::graphics
              * @brief Sets the magnification function
              * 
              * @param value Filter function
+             * 
+             * @note The magnification filter only accept `Nearest` and `Linear`
              */
             void setMagFilter(Filter value) noexcept;
 
@@ -325,6 +434,48 @@ namespace tbaricault::graphics
              * @param value Color
              */
             void setBorderColor(const tbaricault::colors::Color& value) noexcept;
+
+            /**
+             * @brief Sets the index of the lowest defined mipmap level
+             * 
+             * @param value Level index
+             */
+            void setMipmapBaseLevel(int value) noexcept;
+
+            /**
+             * @brief Sets the index of the highest defined mipmap level
+             * 
+             * @param value Level index
+             */
+            void setMipmapMaxLevel(int value) noexcept;
+
+            /**
+             * @brief Sets the minimum level-of-detail
+             * 
+             * @param value Level-of-detail
+             */
+            void setMinLOD(float value) noexcept;
+
+            /**
+             * @brief Sets the maximum level-of-detail
+             * 
+             * @param value Level-of-detail
+             */
+            void setMaxLOD(float value) noexcept;
+
+            /**
+             * @brief Sets the fixed bias value that is to be added to the level-of-detail for the texture before texture sampling
+             * 
+             * @param value Level-of-detail
+             */
+            void setLODBias(float value) noexcept;
+
+            /**
+             * @brief Specifies the texture comparison mode for currently bound depth textures
+             * 
+             * @param value Comparison mode
+             */
+            void setCompare(Compare value) noexcept;
 
             /**
              * @brief Resizes the texture

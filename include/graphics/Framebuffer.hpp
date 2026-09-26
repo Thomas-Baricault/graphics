@@ -12,6 +12,8 @@
 
 #include <tbaricault/math.hpp>
 
+#include "Texture.hpp"
+
 
 namespace tbaricault::graphics
 {
@@ -25,9 +27,98 @@ namespace tbaricault::graphics
         public:
 
             /**
+             * @brief Framebuffer operation mode
+             */
+            enum class Mode
+            {
+
+                /**
+                 * @brief Drawing operations
+                 */
+                Draw = GL_DRAW_FRAMEBUFFER,
+
+                /**
+                 * @brief Reading operations
+                 */
+                Read = GL_READ_FRAMEBUFFER,
+
+            };
+
+
+            /**
+             * @brief Manages a framebuffer binding lifetime
+             */
+            class BindGuard
+            {
+
+                public:
+
+                    /**
+                     * @brief Default constructor is disabled
+                     */
+                    BindGuard() = delete;
+
+                    /**
+                     * @brief Copy constructor is disabled
+                     */
+                    BindGuard(const BindGuard&) = delete;
+
+                    /**
+                     * @brief Move constructor is disabled
+                     */
+                    BindGuard(BindGuard&&) = delete;
+
+                    /**
+                     * @brief Constructs the guard and bind the framebuffer
+                     * 
+                     * @param framebuffer Framebuffer to bind
+                     */
+                    BindGuard(const Framebuffer& framebuffer, Mode mode = Mode::Draw) noexcept;
+
+                    /**
+                     * @brief Destructor
+                     * 
+                     * @note Automatically restore the previous framebuffer used
+                     */
+                    ~BindGuard() noexcept;
+
+                    /**
+                     * @brief Copy assignment operator is disabled
+                     */
+                    BindGuard& operator=(const BindGuard&) = delete;
+
+                    /**
+                     * @brief Move assignment operator is disabled
+                     */
+                    BindGuard& operator=(BindGuard&&) = delete;
+
+
+                private:
+
+                    /**
+                     * @brief Framebuffer binding mode
+                     */
+                    Mode _mode;
+
+                    /**
+                     * @brief Previous framebuffer used
+                     */
+                    GLint _previous;
+
+            };
+
+
+            /**
+             * @brief Unbind any binded framebuffer
+             * 
+             * @param mode Binding mode
+             */
+            static void unbind(Mode mode = Mode::Draw) noexcept;
+
+            /**
              * @brief Constructs an empty framebuffer
              */
-            Framebuffer() noexcept = default;
+            Framebuffer() noexcept;
 
             /**
              * @brief Copy constructor is disabled
@@ -44,7 +135,7 @@ namespace tbaricault::graphics
             /**
              * @brief Destructor
              */
-            ~Framebuffer();
+            ~Framebuffer() noexcept;
 
             /**
              * @brief Copy assignment operator is disabled
@@ -66,6 +157,13 @@ namespace tbaricault::graphics
             explicit operator bool() const noexcept;
 
             /**
+             * @brief Returns the OpenGL framebuffer identifier
+             * 
+             * @return Framebuffer identifier
+             */
+            GLuint getHandle() const noexcept;
+
+            /**
              * @brief Returns the size of the framebuffer
              * 
              * @return Framebuffer size in pixels
@@ -79,6 +177,22 @@ namespace tbaricault::graphics
              */
             void setSize(const tbaricault::math::Vector2<int>& value) noexcept;
 
+            /**
+             * @brief Bind the framebuffer
+             * 
+             * @param mode Binding mode
+             */
+            void bind(Mode mode = Mode::Draw) const noexcept;
+
+            /**
+             * @brief Scoped bind for the framebuffer
+             * 
+             * @param mode Binding mode
+             * 
+             * @return Bind guard for this framebuffer usage
+             */
+            BindGuard use(Mode mode = Mode::Draw) const noexcept;
+
 
         private:
 
@@ -88,14 +202,9 @@ namespace tbaricault::graphics
             GLuint _handle = 0;
 
             /**
-             * @brief Texture identifier
+             * @brief Framebuffer texture
              */
-            GLuint _texture = 0;
-
-            /**
-             * @brief Framebuffer dimensions
-             */
-            tbaricault::math::Vector2<int> _size;
+            Texture _texture;
 
     };
 
