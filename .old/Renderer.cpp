@@ -308,11 +308,9 @@ namespace tbaricault::graphics
     {
         if (Renderer::_active == this)
         {
-            this->_clip = (
-                this->_clips.empty()
+            this->_clip = this->_clips.empty()
                 ? tbaricault::math::Rect<int>(this->_size)
-                : this->_clips.top()
-            );
+                : this->_clips.top();
             glViewport(
                 this->_clip.x,
                 this->_clip.y,

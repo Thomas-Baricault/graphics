@@ -55,20 +55,6 @@ namespace tbaricault::graphics
 
 
             /**
-             * @brief Initializes the FreeType library
-             * 
-             * This function must be called before any font operation.
-             */
-            static void init() noexcept;
-
-            /**
-             * @brief Shuts down the FreeType library
-             * 
-             * After calling this function, no other font functions should be used.
-             */
-            static void cleanup() noexcept;
-
-            /**
              * @brief Constructs an invalid font
              */
             Font() noexcept = default;
@@ -199,6 +185,9 @@ namespace tbaricault::graphics
              * @param size Font size
              */
             void _setSize(int size);
+
+
+        friend class Runtime;
 
     };
 

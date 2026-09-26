@@ -8,10 +8,7 @@
 #pragma once
 
 
-#include "CubicCurve.hpp"
 #include "Font.hpp"
-#include "Path.hpp"
-#include "QuadraticCurve.hpp"
 #include "Renderer.hpp"
+#include "Runtime.hpp"
 #include "Texture.hpp"
-#include "utils.hpp"
