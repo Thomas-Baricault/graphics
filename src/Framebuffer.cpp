@@ -37,12 +37,6 @@ namespace tbaricault::graphics
         return;
     }
 
-    Framebuffer::Framebuffer() noexcept
-    {
-        glCreateFramebuffers(1, &this->_handle);
-        return;
-    }
-
     Framebuffer::Framebuffer(Framebuffer&& other) noexcept
         : _handle(other._handle)
         , _texture(std::move(other._texture))
@@ -87,8 +81,17 @@ namespace tbaricault::graphics
 
     void Framebuffer::setSize(const tbaricault::math::Vector2<int>& value) noexcept
     {
+        if (!this->_handle)
+            glCreateFramebuffers(1, &this->_handle);
+        if (!this->_handle)
+            return;
         this->_texture.setSize(value);
-        glNamedFramebufferTexture(this->_handle, GL_COLOR_ATTACHMENT0, this->_texture.getHandle(), 0);
+        glNamedFramebufferTexture(
+            this->_handle,
+            GL_COLOR_ATTACHMENT0,
+            this->_texture.getHandle(),
+            0
+        );
         return;
     }
 

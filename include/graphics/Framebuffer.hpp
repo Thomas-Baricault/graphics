@@ -118,7 +118,7 @@ namespace tbaricault::graphics
             /**
              * @brief Constructs an empty framebuffer
              */
-            Framebuffer() noexcept;
+            Framebuffer() noexcept = default;
 
             /**
              * @brief Copy constructor is disabled

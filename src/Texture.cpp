@@ -17,7 +17,11 @@ namespace tbaricault::graphics
     Texture::BindGuard::BindGuard(unsigned int unit, const Texture& texture) noexcept
         : _unit(unit)
     {
-        glGetIntegeri_v(GL_TEXTURE_BINDING_2D, this->_unit, &this->_previous);
+        glGetIntegeri_v(
+            GL_TEXTURE_BINDING_2D,
+            this->_unit,
+            &this->_previous
+        );
         texture.bind(unit);
         return;
     }
@@ -99,10 +103,16 @@ namespace tbaricault::graphics
 
     Texture::operator tbaricault::images::Image() const
     {
-        if (this->_handle == 0)
+        if (!this->_handle)
             return (tbaricault::images::Image());
         tbaricault::colors::RGBA* data = new tbaricault::colors::RGBA[this->_size.x * this->_size.y];
-        glGetTextureImage(this->_handle, 0, GL_RGBA, GL_UNSIGNED_BYTE, this->_size.x * this->_size.y * 4, data);
+        glGetTextureImage(
+            this->_handle,
+            0,
+            GL_RGBA, GL_UNSIGNED_BYTE,
+            this->_size.x * this->_size.y * 4,
+            data
+        );
         return (tbaricault::images::Image(this->_size, data, false));
     }
 
@@ -298,7 +308,12 @@ namespace tbaricault::graphics
         glCreateTextures(GL_TEXTURE_2D, 1, &this->_handle);
         if (this->_handle)
         {
-            glTextureStorage2D(this->_handle, this->_mipmaps, GL_RGBA8, this->_size.x, this->_size.y);
+            glTextureStorage2D(
+                this->_handle,
+                this->_mipmaps,
+                GL_RGBA8,
+                this->_size.x, this->_size.y
+            );
             if (this->_mipmaps == 1)
                 this->setMagFilter(Filter::NearestMipmapLinear);
         }
@@ -307,7 +322,7 @@ namespace tbaricault::graphics
 
     void Texture::setMipmap(int level, const tbaricault::images::Image& image, const tbaricault::math::Vector2<int>& offset) noexcept
     {
-        if (this->_handle == 0 || level < 0 || level >= this->_mipmaps || !image)
+        if (!this->_handle || level < 0 || level >= this->_mipmaps || !image)
             return;
         glTextureSubImage2D(
             this->_handle,

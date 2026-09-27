@@ -8,7 +8,10 @@
 #pragma once
 
 
+#include "2d/2d.hpp"
+#include "2d/3d.hpp"
 #include "Font.hpp"
-#include "Renderer.hpp"
+#include "Framebuffer.hpp"
+#include "Mesh.hpp"
 #include "Runtime.hpp"
 #include "Texture.hpp"
