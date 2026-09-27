@@ -14,6 +14,8 @@
 #include <tbaricault/images.hpp>
 #include <tbaricault/math.hpp>
 
+#include "Wrapper.hpp"
+
 
 namespace tbaricault::graphics
 {
@@ -22,6 +24,7 @@ namespace tbaricault::graphics
      * @brief Wrapper around an OpenGL 2D texture
      */
     class Texture final
+        : public Wrapper
     {
 
         public:
@@ -254,7 +257,7 @@ namespace tbaricault::graphics
              * 
              * @param other Texture to move
              */
-            Texture(Texture&& other) noexcept;
+            Texture(Texture&& other) noexcept = default;
 
             /**
              * @brief Constructs a texture specifying its dimensions
@@ -269,12 +272,12 @@ namespace tbaricault::graphics
              * @param image Source image
              * @param mipmaps Number of mipmap levels, `0` to auto determine
              */
-            Texture(const tbaricault::images::Image& image, int mipmaps = 1);
+            Texture(const tbaricault::images::Image& image, int mipmaps = 1) noexcept;
 
             /**
              * @brief Destructor
              */
-            ~Texture();
+            virtual ~Texture() noexcept;
 
             /**
              * @brief Copy assignment operator is disabled
@@ -288,24 +291,12 @@ namespace tbaricault::graphics
              * 
              * @return Reference to this texture
              */
-            Texture& operator=(Texture&& other) noexcept;
-
-            /**
-             * @brief Returns whether the texture is in a valid state
-             */
-            explicit operator bool() const noexcept;
+            Texture& operator=(Texture&& other) noexcept = default;
 
             /**
              * @brief Converts the texture to image
              */
             operator tbaricault::images::Image() const;
-
-            /**
-             * @brief Returns the OpenGL texture identifier
-             * 
-             * @return Texture identifier
-             */
-            GLuint getHandle() const noexcept;
 
             /**
              * @brief Returns the minifying function
@@ -533,6 +524,12 @@ namespace tbaricault::graphics
              * @brief Number of mipmap levels
              */
             int _mipmaps = 1;
+
+
+            /**
+             * @brief Destroys the texture
+             */
+            void _destroy() noexcept override;
 
     };
 

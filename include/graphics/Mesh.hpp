@@ -82,12 +82,12 @@ namespace tbaricault::graphics
         protected:
 
             /**
-             * @brief Vertex array object 
+             * @brief Vertex array object identifier
              */
             GLuint _vao = 0;
 
             /**
-             * @brief Vertex buffer object
+             * @brief Vertex buffer object identifier
              */
             GLuint _vbo = 0;
 

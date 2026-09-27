@@ -13,6 +13,7 @@
 #include <tbaricault/math.hpp>
 
 #include "Texture.hpp"
+#include "Wrapper.hpp"
 
 
 namespace tbaricault::graphics
@@ -22,6 +23,7 @@ namespace tbaricault::graphics
      * @brief Wrapper around OpenGL framebuffer
      */
     class Framebuffer final
+        : public Wrapper
     {
 
         public:
@@ -130,12 +132,12 @@ namespace tbaricault::graphics
              * 
              * @param other Framebuffer to move
              */
-            Framebuffer(Framebuffer&& other) noexcept;
+            Framebuffer(Framebuffer&& other) noexcept = default;
 
             /**
              * @brief Destructor
              */
-            ~Framebuffer() noexcept;
+            virtual ~Framebuffer() noexcept;
 
             /**
              * @brief Copy assignment operator is disabled
@@ -149,19 +151,12 @@ namespace tbaricault::graphics
              * 
              * @return Reference to this framebuffer
              */
-            Framebuffer& operator=(Framebuffer&& other) noexcept;
+            Framebuffer& operator=(Framebuffer&& other) noexcept = default;
 
             /**
              * @brief Returns whether the framebuffer is in a valid state
              */
             explicit operator bool() const noexcept;
-
-            /**
-             * @brief Returns the OpenGL framebuffer identifier
-             * 
-             * @return Framebuffer identifier
-             */
-            GLuint getHandle() const noexcept;
 
             /**
              * @brief Returns the size of the framebuffer
@@ -197,14 +192,15 @@ namespace tbaricault::graphics
         private:
 
             /**
-             * @brief Framebuffer identifier
-             */
-            GLuint _handle = 0;
-
-            /**
              * @brief Framebuffer texture
              */
             Texture _texture;
+
+
+            /**
+             * @brief Destroys the framebuffer
+             */
+            void _destroy() noexcept override;
 
     };
 

@@ -20,8 +20,11 @@ SRC			=	2d/Mesh				\
 				3d/Mesh				\
 				Font				\
 				Framebuffer			\
+				Program				\
 				Runtime				\
-				Texture
+				Shader				\
+				Texture				\
+				Wrapper
 
 
 all: build

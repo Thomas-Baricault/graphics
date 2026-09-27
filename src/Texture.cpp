@@ -46,24 +46,13 @@ namespace tbaricault::graphics
         return;
     }
 
-    Texture::Texture(Texture&& other) noexcept
-        : _handle(other._handle)
-        , _size(other._size)
-        , _mipmaps(other._mipmaps)
-    {
-        other._handle = 0;
-        other._size = 0;
-        other._mipmaps = 1;
-        return;
-    }
-
     Texture::Texture(const tbaricault::math::Vector2<int>& size) noexcept
     {
         this->setSize(size);
         return;
     }
 
-    Texture::Texture(const tbaricault::images::Image& image, int mipmaps)
+    Texture::Texture(const tbaricault::images::Image& image, int mipmaps) noexcept
     {
         this->_mipmaps = mipmaps == 0
             ? Texture::mipmapLevels(image.getSize())
@@ -74,31 +63,10 @@ namespace tbaricault::graphics
         return;
     }
 
-    Texture::~Texture()
+    Texture::~Texture() noexcept
     {
-        if (this->_handle)
-            glDeleteTextures(1, &this->_handle);
+        this->_destroy();
         return;
-    }
-
-    Texture& Texture::operator=(Texture&& other) noexcept
-    {
-        if (&other == this)
-            return (*this);
-        if (this->_handle)
-            glDeleteTextures(1, &this->_handle);
-        this->_handle = other._handle;
-        this->_size = other._size;
-        this->_mipmaps = other._mipmaps;
-        other._handle = 0;
-        other._size = 0;
-        other._mipmaps = 1;
-        return (*this);
-    }
-
-    Texture::operator bool() const noexcept
-    {
-        return (this->_handle != 0);
     }
 
     Texture::operator tbaricault::images::Image() const
@@ -114,11 +82,6 @@ namespace tbaricault::graphics
             data
         );
         return (tbaricault::images::Image(this->_size, data, false));
-    }
-
-    GLuint Texture::getHandle() const noexcept
-    {
-        return (this->_handle);
     }
 
     Texture::Filter Texture::getMinFilter() const noexcept
@@ -349,6 +312,16 @@ namespace tbaricault::graphics
     Texture::BindGuard Texture::use(unsigned int unit) const noexcept
     {
         return (BindGuard(unit, *this));
+    }
+
+    void Texture::_destroy() noexcept
+    {
+        if (this->_handle)
+        {
+            glDeleteTextures(1, &this->_handle);
+            this->_handle = 0;
+        }
+        return;
     }
 
 }
