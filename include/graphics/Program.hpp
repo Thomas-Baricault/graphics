@@ -9,6 +9,9 @@
 
 
 #include <span>
+#include <string_view>
+
+#include <tbaricault/math.hpp>
 
 #include "Shader.hpp"
 #include "Wrapper.hpp"
@@ -17,6 +20,9 @@
 namespace tbaricault::graphics
 {
 
+    /**
+     * @brief Wrapper around OpenGL shader program
+     */
     class Program final
         : public Wrapper
     {
@@ -130,6 +136,286 @@ namespace tbaricault::graphics
              * @return Reference to this Program
              */
             Program& operator=(Program&& other) noexcept = default;
+
+            /**
+             * @brief Sets an uniform boolean value
+             * 
+             * @param name Uniform name
+             * @param value Value to set
+             */
+            void setUniform(std::string_view name, bool value) const noexcept;
+
+            /**
+             * @brief Sets an uniform value
+             * 
+             * @param name Uniform name
+             * @param value Value to set
+             */
+            void setUniform(std::string_view name, int value) const noexcept;
+
+            /**
+             * @brief Sets an uniform value
+             * 
+             * @param name Uniform name
+             * @param value Value to set
+             */
+            void setUniform(std::string_view name, unsigned int value) const noexcept;
+
+            /**
+             * @brief Sets an uniform value
+             * 
+             * @param name Uniform name
+             * @param value Value to set
+             */
+            void setUniform(std::string_view name, float value) const noexcept;
+
+            /**
+             * @brief Sets an uniform value
+             * 
+             * @param name Uniform name
+             * @param value Value to set
+             */
+            void setUniform(std::string_view name, double value) const noexcept;
+
+            /**
+             * @brief Sets an uniform value
+             * 
+             * @param name Uniform name
+             * @param value Value to set
+             */
+            void setUniform(std::string_view name, const tbaricault::math::Vector2<int>& value) const noexcept;
+
+            /**
+             * @brief Sets an uniform value
+             * 
+             * @param name Uniform name
+             * @param value Value to set
+             */
+            void setUniform(std::string_view name, const tbaricault::math::Vector2<unsigned int>& value) const noexcept;
+
+            /**
+             * @brief Sets an uniform value
+             * 
+             * @param name Uniform name
+             * @param value Value to set
+             */
+            void setUniform(std::string_view name, const tbaricault::math::Vector2<float>& value) const noexcept;
+
+            /**
+             * @brief Sets an uniform value
+             * 
+             * @param name Uniform name
+             * @param value Value to set
+             */
+            void setUniform(std::string_view name, const tbaricault::math::Vector2<double>& value) const noexcept;
+
+            /**
+             * @brief Sets an uniform value
+             * 
+             * @param name Uniform name
+             * @param value Value to set
+             */
+            void setUniform(std::string_view name, const tbaricault::math::Vector3<int>& value) const noexcept;
+
+            /**
+             * @brief Sets an uniform value
+             * 
+             * @param name Uniform name
+             * @param value Value to set
+             */
+            void setUniform(std::string_view name, const tbaricault::math::Vector3<unsigned int>& value) const noexcept;
+
+            /**
+             * @brief Sets an uniform value
+             * 
+             * @param name Uniform name
+             * @param value Value to set
+             */
+            void setUniform(std::string_view name, const tbaricault::math::Vector3<float>& value) const noexcept;
+
+            /**
+             * @brief Sets an uniform value
+             * 
+             * @param name Uniform name
+             * @param value Value to set
+             */
+            void setUniform(std::string_view name, const tbaricault::math::Vector3<double>& value) const noexcept;
+
+            /**
+             * @brief Sets an uniform value
+             * 
+             * @param name Uniform name
+             * @param value Value to set
+             */
+            void setUniform(std::string_view name, const tbaricault::math::Vector4<int>& value) const noexcept;
+
+            /**
+             * @brief Sets an uniform value
+             * 
+             * @param name Uniform name
+             * @param value Value to set
+             */
+            void setUniform(std::string_view name, const tbaricault::math::Vector4<unsigned int>& value) const noexcept;
+
+            /**
+             * @brief Sets an uniform value
+             * 
+             * @param name Uniform name
+             * @param value Value to set
+             */
+            void setUniform(std::string_view name, const tbaricault::math::Vector4<float>& value) const noexcept;
+
+            /**
+             * @brief Sets an uniform value
+             * 
+             * @param name Uniform name
+             * @param value Value to set
+             */
+            void setUniform(std::string_view name, const tbaricault::math::Vector4<double>& value) const noexcept;
+
+            /**
+             * @brief Sets an uniform value
+             * 
+             * @param name Uniform name
+             * @param value Value to set
+             */
+            void setUniform(std::string_view name, const tbaricault::math::Matrix<2, 2, float>& value) const noexcept;
+
+            /**
+             * @brief Sets an uniform value
+             * 
+             * @param name Uniform name
+             * @param value Value to set
+             */
+            void setUniform(std::string_view name, const tbaricault::math::Matrix<2, 2, double>& value) const noexcept;
+
+            /**
+             * @brief Sets an uniform value
+             * 
+             * @param name Uniform name
+             * @param value Value to set
+             */
+            void setUniform(std::string_view name, const tbaricault::math::Matrix<3, 3, float>& value) const noexcept;
+
+            /**
+             * @brief Sets an uniform value
+             * 
+             * @param name Uniform name
+             * @param value Value to set
+             */
+            void setUniform(std::string_view name, const tbaricault::math::Matrix<3, 3, double>& value) const noexcept;
+
+            /**
+             * @brief Sets an uniform value
+             * 
+             * @param name Uniform name
+             * @param value Value to set
+             */
+            void setUniform(std::string_view name, const tbaricault::math::Matrix<4, 4, float>& value) const noexcept;
+
+            /**
+             * @brief Sets an uniform value
+             * 
+             * @param name Uniform name
+             * @param value Value to set
+             */
+            void setUniform(std::string_view name, const tbaricault::math::Matrix<4, 4, double>& value) const noexcept;
+
+            /**
+             * @brief Sets an uniform value
+             * 
+             * @param name Uniform name
+             * @param value Value to set
+             */
+            void setUniform(std::string_view name, const tbaricault::math::Matrix<2, 3, float>& value) const noexcept;
+
+            /**
+             * @brief Sets an uniform value
+             * 
+             * @param name Uniform name
+             * @param value Value to set
+             */
+            void setUniform(std::string_view name, const tbaricault::math::Matrix<2, 3, double>& value) const noexcept;
+
+            /**
+             * @brief Sets an uniform value
+             * 
+             * @param name Uniform name
+             * @param value Value to set
+             */
+            void setUniform(std::string_view name, const tbaricault::math::Matrix<2, 4, float>& value) const noexcept;
+
+            /**
+             * @brief Sets an uniform value
+             * 
+             * @param name Uniform name
+             * @param value Value to set
+             */
+            void setUniform(std::string_view name, const tbaricault::math::Matrix<2, 4, double>& value) const noexcept;
+
+            /**
+             * @brief Sets an uniform value
+             * 
+             * @param name Uniform name
+             * @param value Value to set
+             */
+            void setUniform(std::string_view name, const tbaricault::math::Matrix<3, 2, float>& value) const noexcept;
+
+            /**
+             * @brief Sets an uniform value
+             * 
+             * @param name Uniform name
+             * @param value Value to set
+             */
+            void setUniform(std::string_view name, const tbaricault::math::Matrix<3, 2, double>& value) const noexcept;
+
+            /**
+             * @brief Sets an uniform value
+             * 
+             * @param name Uniform name
+             * @param value Value to set
+             */
+            void setUniform(std::string_view name, const tbaricault::math::Matrix<3, 4, float>& value) const noexcept;
+
+            /**
+             * @brief Sets an uniform value
+             * 
+             * @param name Uniform name
+             * @param value Value to set
+             */
+            void setUniform(std::string_view name, const tbaricault::math::Matrix<3, 4, double>& value) const noexcept;
+
+            /**
+             * @brief Sets an uniform value
+             * 
+             * @param name Uniform name
+             * @param value Value to set
+             */
+            void setUniform(std::string_view name, const tbaricault::math::Matrix<4, 2, float>& value) const noexcept;
+
+            /**
+             * @brief Sets an uniform value
+             * 
+             * @param name Uniform name
+             * @param value Value to set
+             */
+            void setUniform(std::string_view name, const tbaricault::math::Matrix<4, 2, double>& value) const noexcept;
+
+            /**
+             * @brief Sets an uniform value
+             * 
+             * @param name Uniform name
+             * @param value Value to set
+             */
+            void setUniform(std::string_view name, const tbaricault::math::Matrix<4, 3, float>& value) const noexcept;
+
+            /**
+             * @brief Sets an uniform value
+             * 
+             * @param name Uniform name
+             * @param value Value to set
+             */
+            void setUniform(std::string_view name, const tbaricault::math::Matrix<4, 3, double>& value) const noexcept;
 
             /**
              * @brief Bind the program

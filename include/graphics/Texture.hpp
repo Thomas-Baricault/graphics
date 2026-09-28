@@ -21,7 +21,7 @@ namespace tbaricault::graphics
 {
 
     /**
-     * @brief Wrapper around an OpenGL 2D texture
+     * @brief Wrapper around OpenGL 2D texture
      */
     class Texture final
         : public Wrapper

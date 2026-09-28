@@ -15,7 +15,7 @@ namespace tbaricault::graphics
 {
 
     /**
-     * @brief Abstract base class for OpenGL wrapper
+     * @brief Abstract base class for OpenGL wrappers
      */
     class Wrapper
     {

@@ -17,15 +17,34 @@ namespace tbaricault::graphics::d2
 {
 
     /**
+     * @brief 2D vertex structure
+     */
+    struct Vertex
+    {
+
+        /**
+         * @brief Vertex position
+         */
+        tbaricault::math::Vector3<float> position;
+
+        /**
+         * @brief Vertex texture coordinates
+         */
+        tbaricault::math::Vector2<float> uv;
+
+    };
+
+
+    /**
      * @brief 2D mesh
      */
     class Mesh final
-        : public tbaricault::graphics::Mesh<tbaricault::math::Vector2<float>>
+        : public tbaricault::graphics::Mesh<Vertex>
     {
 
         public:
 
-            using tbaricault::graphics::Mesh<tbaricault::math::Vector2<float>>::Mesh;
+            using tbaricault::graphics::Mesh<Vertex>::Mesh;
 
 
             /**

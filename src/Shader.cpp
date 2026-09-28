@@ -13,12 +13,12 @@
 namespace tbaricault::graphics
 {
 
-    Shader::Shader(Type type, const std::string& src)
+    Shader::Shader(Type type, std::string_view src)
     {
         this->_handle = glCreateShader(static_cast<GLenum>(type));
         if (!this->_handle)
             return;
-        const char* ptr = src.c_str();
+        const char* ptr = src.data();
         glShaderSource(this->_handle, 1, &ptr, nullptr);
         glCompileShader(this->_handle);
         GLint success = GL_FALSE;

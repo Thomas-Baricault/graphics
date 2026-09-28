@@ -61,6 +61,404 @@ namespace tbaricault::graphics
         return;
     }
 
+    void Program::setUniform(std::string_view name, bool value) const noexcept
+    {
+        glProgramUniform1i(
+            this->_handle,
+            glGetUniformLocation(this->_handle, name.data()),
+            value
+        );
+        return;
+    }
+
+    void Program::setUniform(std::string_view name, int value) const noexcept
+    {
+        glProgramUniform1i(
+            this->_handle,
+            glGetUniformLocation(this->_handle, name.data()),
+            value
+        );
+        return;
+    }
+
+    void Program::setUniform(std::string_view name, unsigned int value) const noexcept
+    {
+        glProgramUniform1ui(
+            this->_handle,
+            glGetUniformLocation(this->_handle, name.data()),
+            value
+        );
+        return;
+    }
+
+    void Program::setUniform(std::string_view name, float value) const noexcept
+    {
+        glProgramUniform1f(
+            this->_handle,
+            glGetUniformLocation(this->_handle, name.data()),
+            value
+        );
+        return;
+    }
+
+    void Program::setUniform(std::string_view name, double value) const noexcept
+    {
+        glProgramUniform1d(
+            this->_handle,
+            glGetUniformLocation(this->_handle, name.data()),
+            value
+        );
+        return;
+    }
+
+    void Program::setUniform(std::string_view name, const tbaricault::math::Vector2<int>& value) const noexcept
+    {
+        glProgramUniform2iv(
+            this->_handle,
+            glGetUniformLocation(this->_handle, name.data()),
+            1,
+            &value.x
+        );
+        return;
+    }
+
+    void Program::setUniform(std::string_view name, const tbaricault::math::Vector2<unsigned int>& value) const noexcept
+    {
+        glProgramUniform2uiv(
+            this->_handle,
+            glGetUniformLocation(this->_handle, name.data()),
+            1,
+            &value.x
+        );
+        return;
+    }
+
+    void Program::setUniform(std::string_view name, const tbaricault::math::Vector2<float>& value) const noexcept
+    {
+        glProgramUniform2fv(
+            this->_handle,
+            glGetUniformLocation(this->_handle, name.data()),
+            1,
+            &value.x
+        );
+        return;
+    }
+
+    void Program::setUniform(std::string_view name, const tbaricault::math::Vector2<double>& value) const noexcept
+    {
+        glProgramUniform2dv(
+            this->_handle,
+            glGetUniformLocation(this->_handle, name.data()),
+            1,
+            &value.x
+        );
+        return;
+    }
+
+    void Program::setUniform(std::string_view name, const tbaricault::math::Vector3<int>& value) const noexcept
+    {
+        glProgramUniform3iv(
+            this->_handle,
+            glGetUniformLocation(this->_handle, name.data()),
+            1,
+            &value.x
+        );
+        return;
+    }
+
+    void Program::setUniform(std::string_view name, const tbaricault::math::Vector3<unsigned int>& value) const noexcept
+    {
+        glProgramUniform3uiv(
+            this->_handle,
+            glGetUniformLocation(this->_handle, name.data()),
+            1,
+            &value.x
+        );
+        return;
+    }
+
+    void Program::setUniform(std::string_view name, const tbaricault::math::Vector3<float>& value) const noexcept
+    {
+        glProgramUniform3fv(
+            this->_handle,
+            glGetUniformLocation(this->_handle, name.data()),
+            1,
+            &value.x
+        );
+        return;
+    }
+
+    void Program::setUniform(std::string_view name, const tbaricault::math::Vector3<double>& value) const noexcept
+    {
+        glProgramUniform3dv(
+            this->_handle,
+            glGetUniformLocation(this->_handle, name.data()),
+            1,
+            &value.x
+        );
+        return;
+    }
+
+    void Program::setUniform(std::string_view name, const tbaricault::math::Vector4<int>& value) const noexcept
+    {
+        glProgramUniform4iv(
+            this->_handle,
+            glGetUniformLocation(this->_handle, name.data()),
+            1,
+            &value.x
+        );
+        return;
+    }
+
+    void Program::setUniform(std::string_view name, const tbaricault::math::Vector4<unsigned int>& value) const noexcept
+    {
+        glProgramUniform4uiv(
+            this->_handle,
+            glGetUniformLocation(this->_handle, name.data()),
+            1,
+            &value.x
+        );
+        return;
+    }
+
+    void Program::setUniform(std::string_view name, const tbaricault::math::Vector4<float>& value) const noexcept
+    {
+        glProgramUniform4fv(
+            this->_handle,
+            glGetUniformLocation(this->_handle, name.data()),
+            1,
+            &value.x
+        );
+        return;
+    }
+
+    void Program::setUniform(std::string_view name, const tbaricault::math::Vector4<double>& value) const noexcept
+    {
+        glProgramUniform4dv(
+            this->_handle,
+            glGetUniformLocation(this->_handle, name.data()),
+            1,
+            &value.x
+        );
+        return;
+    }
+
+    void Program::setUniform(std::string_view name, const tbaricault::math::Matrix<2, 2, float>& value) const noexcept
+    {
+        glProgramUniformMatrix2fv(
+            this->_handle,
+            glGetUniformLocation(this->_handle, name.data()),
+            1,
+            GL_TRUE,
+            &value(0, 0)
+        );
+        return;
+    }
+
+    void Program::setUniform(std::string_view name, const tbaricault::math::Matrix<2, 2, double>& value) const noexcept
+    {
+        glProgramUniformMatrix2dv(
+            this->_handle,
+            glGetUniformLocation(this->_handle, name.data()),
+            1,
+            GL_TRUE,
+            &value(0, 0)
+        );
+        return;
+    }
+
+    void Program::setUniform(std::string_view name, const tbaricault::math::Matrix<3, 3, float>& value) const noexcept
+    {
+        glProgramUniformMatrix3fv(
+            this->_handle,
+            glGetUniformLocation(this->_handle, name.data()),
+            1,
+            GL_TRUE,
+            &value(0, 0)
+        );
+        return;
+    }
+
+    void Program::setUniform(std::string_view name, const tbaricault::math::Matrix<3, 3, double>& value) const noexcept
+    {
+        glProgramUniformMatrix3dv(
+            this->_handle,
+            glGetUniformLocation(this->_handle, name.data()),
+            1,
+            GL_TRUE,
+            &value(0, 0)
+        );
+        return;
+    }
+
+    void Program::setUniform(std::string_view name, const tbaricault::math::Matrix<4, 4, float>& value) const noexcept
+    {
+        glProgramUniformMatrix4fv(
+            this->_handle,
+            glGetUniformLocation(this->_handle, name.data()),
+            1,
+            GL_TRUE,
+            &value(0, 0)
+        );
+        return;
+    }
+
+    void Program::setUniform(std::string_view name, const tbaricault::math::Matrix<4, 4, double>& value) const noexcept
+    {
+        glProgramUniformMatrix4dv(
+            this->_handle,
+            glGetUniformLocation(this->_handle, name.data()),
+            1,
+            GL_TRUE,
+            &value(0, 0)
+        );
+        return;
+    }
+
+    void Program::setUniform(std::string_view name, const tbaricault::math::Matrix<2, 3, float>& value) const noexcept
+    {
+        glProgramUniformMatrix2x3fv(
+            this->_handle,
+            glGetUniformLocation(this->_handle, name.data()),
+            1,
+            GL_TRUE,
+            &value(0, 0)
+        );
+        return;
+    }
+
+    void Program::setUniform(std::string_view name, const tbaricault::math::Matrix<2, 3, double>& value) const noexcept
+    {
+        glProgramUniformMatrix2x3dv(
+            this->_handle,
+            glGetUniformLocation(this->_handle, name.data()),
+            1,
+            GL_TRUE,
+            &value(0, 0)
+        );
+        return;
+    }
+
+    void Program::setUniform(std::string_view name, const tbaricault::math::Matrix<2, 4, float>& value) const noexcept
+    {
+        glProgramUniformMatrix2x4fv(
+            this->_handle,
+            glGetUniformLocation(this->_handle, name.data()),
+            1,
+            GL_TRUE,
+            &value(0, 0)
+        );
+        return;
+    }
+
+    void Program::setUniform(std::string_view name, const tbaricault::math::Matrix<2, 4, double>& value) const noexcept
+    {
+        glProgramUniformMatrix2x4dv(
+            this->_handle,
+            glGetUniformLocation(this->_handle, name.data()),
+            1,
+            GL_TRUE,
+            &value(0, 0)
+        );
+        return;
+    }
+
+    void Program::setUniform(std::string_view name, const tbaricault::math::Matrix<3, 2, float>& value) const noexcept
+    {
+        glProgramUniformMatrix3x2fv(
+            this->_handle,
+            glGetUniformLocation(this->_handle, name.data()),
+            1,
+            GL_TRUE,
+            &value(0, 0)
+        );
+        return;
+    }
+
+    void Program::setUniform(std::string_view name, const tbaricault::math::Matrix<3, 2, double>& value) const noexcept
+    {
+        glProgramUniformMatrix3x2dv(
+            this->_handle,
+            glGetUniformLocation(this->_handle, name.data()),
+            1,
+            GL_TRUE,
+            &value(0, 0)
+        );
+        return;
+    }
+
+    void Program::setUniform(std::string_view name, const tbaricault::math::Matrix<3, 4, float>& value) const noexcept
+    {
+        glProgramUniformMatrix3x4fv(
+            this->_handle,
+            glGetUniformLocation(this->_handle, name.data()),
+            1,
+            GL_TRUE,
+            &value(0, 0)
+        );
+        return;
+    }
+
+    void Program::setUniform(std::string_view name, const tbaricault::math::Matrix<3, 4, double>& value) const noexcept
+    {
+        glProgramUniformMatrix3x4dv(
+            this->_handle,
+            glGetUniformLocation(this->_handle, name.data()),
+            1,
+            GL_TRUE,
+            &value(0, 0)
+        );
+        return;
+    }
+
+    void Program::setUniform(std::string_view name, const tbaricault::math::Matrix<4, 2, float>& value) const noexcept
+    {
+        glProgramUniformMatrix4x2fv(
+            this->_handle,
+            glGetUniformLocation(this->_handle, name.data()),
+            1,
+            GL_TRUE,
+            &value(0, 0)
+        );
+        return;
+    }
+
+    void Program::setUniform(std::string_view name, const tbaricault::math::Matrix<4, 2, double>& value) const noexcept
+    {
+        glProgramUniformMatrix4x2dv(
+            this->_handle,
+            glGetUniformLocation(this->_handle, name.data()),
+            1,
+            GL_TRUE,
+            &value(0, 0)
+        );
+        return;
+    }
+
+    void Program::setUniform(std::string_view name, const tbaricault::math::Matrix<4, 3, float>& value) const noexcept
+    {
+        glProgramUniformMatrix4x3fv(
+            this->_handle,
+            glGetUniformLocation(this->_handle, name.data()),
+            1,
+            GL_TRUE,
+            &value(0, 0)
+        );
+        return;
+    }
+
+    void Program::setUniform(std::string_view name, const tbaricault::math::Matrix<4, 3, double>& value) const noexcept
+    {
+        glProgramUniformMatrix4x3dv(
+            this->_handle,
+            glGetUniformLocation(this->_handle, name.data()),
+            1,
+            GL_TRUE,
+            &value(0, 0)
+        );
+        return;
+    }
+
     void Program::bind() const noexcept
     {
         glUseProgram(this->_handle);

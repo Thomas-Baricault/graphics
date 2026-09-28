@@ -28,14 +28,14 @@ namespace tbaricault::graphics::d3
         tbaricault::math::Vector3<float> position;
 
         /**
-         * @brief Vertex normal
-         */
-        tbaricault::math::Vector3<float> normal;
-
-        /**
          * @brief Vertex texture coordinates
          */
         tbaricault::math::Vector2<float> uv;
+
+        /**
+         * @brief Vertex normal
+         */
+        tbaricault::math::Vector3<float> normal;
 
     };
 

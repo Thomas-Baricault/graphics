@@ -32,7 +32,7 @@ namespace tbaricault::graphics::d3
             3,
             GL_FLOAT,
             GL_FALSE,
-            offsetof(Vertex, normal)
+            offsetof(Vertex, uv)
         );
         glVertexArrayAttribBinding(this->_vao, 1, 0);
         glEnableVertexArrayAttrib(this->_vao, 2);
@@ -42,7 +42,7 @@ namespace tbaricault::graphics::d3
             2,
             GL_FLOAT,
             GL_FALSE,
-            offsetof(Vertex, uv)
+            offsetof(Vertex, normal)
         );
         glVertexArrayAttribBinding(this->_vao, 2, 0);
         return;

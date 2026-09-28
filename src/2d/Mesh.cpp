@@ -22,9 +22,19 @@ namespace tbaricault::graphics::d2
             3,
             GL_FLOAT,
             GL_FALSE,
-            0
+            offsetof(Vertex, position)
         );
         glVertexArrayAttribBinding(this->_vao, 0, 0);
+        glEnableVertexArrayAttrib(this->_vao, 1);
+        glVertexArrayAttribFormat(
+            this->_vao,
+            1,
+            3,
+            GL_FLOAT,
+            GL_FALSE,
+            offsetof(Vertex, uv)
+        );
+        glVertexArrayAttribBinding(this->_vao, 1, 0);
         return;
     }
 
