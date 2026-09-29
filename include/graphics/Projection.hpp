@@ -209,12 +209,12 @@ namespace tbaricault::graphics
             /**
              * @brief Projection rectangle
              */
-            tbaricault::math::Rect<float> _rect;
+            tbaricault::math::Rect<float> _rect = {800.0f, 600.0f};
 
             /**
              * @brief Projection distances
              */
-            tbaricault::math::Vector2<float> _distances;
+            tbaricault::math::Vector2<float> _distances = {0.1f, 1000.0f};
 
             /**
              * @brief Field of view
@@ -224,7 +224,7 @@ namespace tbaricault::graphics
             /**
              * @brief Aspect ratio
              */
-            float _aspectRatio = 1;
+            float _aspectRatio = 4.0f / 3.0f;
 
             /**
              * @brief Projection matrix

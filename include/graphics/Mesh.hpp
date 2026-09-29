@@ -10,16 +10,17 @@
 
 #include <span>
 
+#include <GL/glew.h>
+
+#include "Vertex.hpp"
+
 
 namespace tbaricault::graphics
 {
 
     /**
-     * @brief Abstract base class for meshes
-     * 
-     * @tparam T Vertex type
+     * @brief Mesh wrapper around OpenGL VAO/VBO
      */
-    template<typename T>
     class Mesh
     {
 
@@ -45,8 +46,11 @@ namespace tbaricault::graphics
             /**
              * @brief Constructs a mesh from its vertices
              * 
+             * @tparam T Vertex type
+             * 
              * @param vertices Vertices
              */
+            template<VertexType T>
             Mesh(std::span<T> vertices) noexcept;
 
             /**
@@ -95,12 +99,6 @@ namespace tbaricault::graphics
              * @brief Number of vertices
              */
             GLsizei _nVertices = 0;
-
-
-            /**
-             * @brief Setups vertex attributes
-             */
-            virtual void _setup() noexcept = 0;
 
     };
 

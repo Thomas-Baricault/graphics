@@ -16,16 +16,16 @@ TARGETS		=	Freetype::Freetype	\
 				tbaricault::math	\
 				tbaricault::str
 
-SRC			=	2d/Mesh				\
-				3d/Mesh				\
-				Font				\
+SRC			=	Font				\
 				Framebuffer			\
+				Mesh				\
 				Program				\
 				Projection			\
 				Runtime				\
 				Shader				\
 				Texture				\
 				Transform			\
+				View				\
 				Wrapper
 
 
