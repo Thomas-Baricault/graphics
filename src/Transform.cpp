@@ -8,7 +8,7 @@
 #include <cmath>
 
 #include "graphics/Transform.hpp"
-#include <iostream>
+
 
 namespace tbaricault::graphics
 {
@@ -35,7 +35,6 @@ namespace tbaricault::graphics
 
     void Transform::setPosition(const tbaricault::math::Vector3<float>& value) noexcept
     {
-        std::cout << "position: " << value.x << " " << value.y << " " << value.z << std::endl;
         this->_position = value;
         this->_matrix(0, 3) = value.x;
         this->_matrix(1, 3) = value.y;
@@ -45,7 +44,6 @@ namespace tbaricault::graphics
 
     void Transform::setScale(const tbaricault::math::Vector3<float>& value) noexcept
     {
-        std::cout << "scale: " << value.x << " " << value.y << " " << value.z << std::endl;
         this->_scale = value;
         this->_update();
         return;
