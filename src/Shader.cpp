@@ -29,7 +29,7 @@ namespace tbaricault::graphics
             glGetShaderiv(this->_handle, GL_INFO_LOG_LENGTH, &length);
             std::string log(length, '\0');
             glGetShaderInfoLog(this->_handle, length, nullptr, log.data());
-            this->_destroy();
+            this->destroy();
             throw std::runtime_error(log);
         }
         return;
@@ -37,11 +37,11 @@ namespace tbaricault::graphics
 
     Shader::~Shader() noexcept
     {
-        this->_destroy();
+        this->destroy();
         return;
     }
 
-    void Shader::_destroy() noexcept
+    void Shader::destroy() noexcept
     {
         if (this->_handle)
         {

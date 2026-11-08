@@ -39,13 +39,18 @@ namespace tbaricault::graphics
 
     Framebuffer::~Framebuffer() noexcept
     {
-        this->_destroy();
+        this->destroy();
         return;
     }
 
     Framebuffer::operator bool() const noexcept
     {
         return (Wrapper::operator bool() && this->_texture);
+    }
+
+    Texture& Framebuffer::getTexture() noexcept
+    {
+        return (this->_texture);
     }
 
     const tbaricault::math::Vector2<int>& Framebuffer::getSize() const noexcept
@@ -69,6 +74,16 @@ namespace tbaricault::graphics
         return;
     }
 
+    void Framebuffer::destroy() noexcept
+    {
+        if (this->_handle)
+        {
+            glDeleteFramebuffers(1, &this->_handle);
+            this->_handle = 0;
+        }
+        return;
+    }
+
     void Framebuffer::bind(Mode mode) const noexcept
     {
         glBindFramebuffer(static_cast<GLenum>(mode), this->_handle);
@@ -78,16 +93,6 @@ namespace tbaricault::graphics
     Framebuffer::BindGuard Framebuffer::use(Mode mode) const noexcept
     {
         return (BindGuard(*this, mode));
-    }
-
-    void Framebuffer::_destroy() noexcept
-    {
-        if (this->_handle)
-        {
-            glDeleteFramebuffers(1, &this->_handle);
-            this->_handle = 0;
-        }
-        return;
     }
 
 }

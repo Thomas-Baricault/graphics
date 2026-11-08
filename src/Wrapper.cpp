@@ -22,7 +22,7 @@ namespace tbaricault::graphics
     {
         if (&other == this)
             return (*this);
-        this->_destroy();
+        this->destroy();
         this->_handle = other._handle;
         other._handle = 0;
         return (*this);

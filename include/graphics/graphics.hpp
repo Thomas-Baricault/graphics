@@ -8,6 +8,9 @@
 #pragma once
 
 
+#include "2d/2d.hpp"
+#include "3d/3d.hpp"
+#include "Camera.hpp"
 #include "Font.hpp"
 #include "Framebuffer.hpp"
 #include "Mesh.hpp"

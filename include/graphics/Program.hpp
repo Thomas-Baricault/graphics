@@ -418,6 +418,11 @@ namespace tbaricault::graphics
             void setUniform(std::string_view name, const tbaricault::math::Matrix<4, 3, double>& value) const noexcept;
 
             /**
+             * @brief Destroys the program
+             */
+            void destroy() noexcept override;
+
+            /**
              * @brief Bind the program
              */
             void bind() const noexcept;
@@ -428,14 +433,6 @@ namespace tbaricault::graphics
              * @return Bind guard for this program usage
              */
             BindGuard use() const noexcept;
-
-
-        private:
-
-            /**
-             * @brief Destroys the program
-             */
-            void _destroy() noexcept override;
 
     };
 

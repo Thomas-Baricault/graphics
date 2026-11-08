@@ -16,7 +16,9 @@ TARGETS		=	Freetype::Freetype	\
 				tbaricault::math	\
 				tbaricault::str
 
-SRC			=	Font				\
+SRC			=	2d/Vertex			\
+				3d/Vertex			\
+				Font				\
 				Framebuffer			\
 				Mesh				\
 				Program				\

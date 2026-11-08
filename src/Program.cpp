@@ -49,7 +49,7 @@ namespace tbaricault::graphics
             glGetProgramiv(this->_handle, GL_INFO_LOG_LENGTH, &length);
             std::string log(length, '\0');
             glGetProgramInfoLog(this->_handle, length, nullptr, log.data());
-            this->_destroy();
+            this->destroy();
             throw std::runtime_error(log);
         }
         return;
@@ -57,7 +57,7 @@ namespace tbaricault::graphics
 
     Program::~Program() noexcept
     {
-        this->_destroy();
+        this->destroy();
         return;
     }
 
@@ -459,6 +459,16 @@ namespace tbaricault::graphics
         return;
     }
 
+    void Program::destroy() noexcept
+    {
+        if (this->_handle)
+        {
+            glDeleteProgram(this->_handle);
+            this->_handle = 0;
+        }
+        return;
+    }
+
     void Program::bind() const noexcept
     {
         glUseProgram(this->_handle);
@@ -468,16 +478,6 @@ namespace tbaricault::graphics
     Program::BindGuard Program::use() const noexcept
     {
         return (BindGuard(*this));
-    }
-
-    void Program::_destroy() noexcept
-    {
-        if (this->_handle)
-        {
-            glDeleteProgram(this->_handle);
-            this->_handle = 0;
-        }
-        return;
     }
 
 }

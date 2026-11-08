@@ -70,6 +70,11 @@ namespace tbaricault::graphics
              */
             GLuint getHandle() const noexcept;
 
+            /**
+             * @brief Destroys the handled object
+             */
+            virtual void destroy() noexcept = 0;
+
 
         protected:
 
@@ -77,12 +82,6 @@ namespace tbaricault::graphics
              * @brief Handled object identifier
              */
             GLuint _handle = 0;
-
-
-            /**
-             * @brief Destroys the handled object
-             */
-            virtual void _destroy() noexcept = 0;
 
     };
 

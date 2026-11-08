@@ -78,6 +78,11 @@ namespace tbaricault::graphics
             explicit operator bool() const noexcept;
 
             /**
+             * @brief Destroys the mesh
+             */
+            void destroy() noexcept;
+
+            /**
              * @brief Draw the mesh
              */
             void draw() const noexcept;

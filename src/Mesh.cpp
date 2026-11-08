@@ -24,10 +24,7 @@ namespace tbaricault::graphics
 
     Mesh::~Mesh() noexcept
     {
-        if (this->_vao)
-            glDeleteVertexArrays(1, &this->_vao);
-        if (this->_vbo)
-            glDeleteBuffers(1, &this->_vbo);
+        this->destroy();
         return;
     }
 
@@ -35,10 +32,7 @@ namespace tbaricault::graphics
     {
         if (&other == this)
             return (*this);
-        if (this->_vao)
-            glDeleteVertexArrays(1, &this->_vao);
-        if (this->_vbo)
-            glDeleteBuffers(1, &this->_vbo);
+        this->destroy();
         this->_vao = other._vao;
         this->_vbo = other._vbo;
         this->_nVertices = other._nVertices;
@@ -51,6 +45,21 @@ namespace tbaricault::graphics
     Mesh::operator bool() const noexcept
     {
         return (this->_vao && this->_vbo);
+    }
+
+    void Mesh::destroy() noexcept
+    {
+        if (this->_vao)
+        {
+            glDeleteVertexArrays(1, &this->_vao);
+            this->_vao = 0;
+        }
+        if (this->_vbo)
+        {
+            glDeleteBuffers(1, &this->_vbo);
+            this->_vbo = 0;
+        }
+        return;
     }
 
     void Mesh::draw() const noexcept

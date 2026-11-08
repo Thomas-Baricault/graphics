@@ -159,6 +159,13 @@ namespace tbaricault::graphics
             explicit operator bool() const noexcept;
 
             /**
+             * @brief Returns the framebuffer texture
+             * 
+             * @return Texture
+             */
+            Texture& getTexture() noexcept;
+
+            /**
              * @brief Returns the size of the framebuffer
              * 
              * @return Framebuffer size in pixels
@@ -171,6 +178,11 @@ namespace tbaricault::graphics
              * @param value New size in pixels
              */
             void setSize(const tbaricault::math::Vector2<int>& value) noexcept;
+
+            /**
+             * @brief Destroys the framebuffer
+             */
+            void destroy() noexcept override;
 
             /**
              * @brief Bind the framebuffer
@@ -195,12 +207,6 @@ namespace tbaricault::graphics
              * @brief Framebuffer texture
              */
             Texture _texture;
-
-
-            /**
-             * @brief Destroys the framebuffer
-             */
-            void _destroy() noexcept override;
 
     };
 

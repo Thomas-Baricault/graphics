@@ -81,9 +81,6 @@ namespace tbaricault::graphics
     };
 
 
-    class Mesh;
-
-
     /**
      * @brief Base class for vertices
      * 
@@ -93,6 +90,51 @@ namespace tbaricault::graphics
     template<typename This, VertexAttribute... Attributes>
     class Vertex
     {
+
+        public:
+
+            /**
+             * @brief Default constructor
+             */
+            Vertex() noexcept = default;
+
+            /**
+             * @brief Copy constructor
+             * 
+             * @param other Vertex to copy
+             */
+            Vertex(const Vertex& other) noexcept = default;
+
+            /**
+             * @brief Move constructor
+             * 
+             * @param other Vertex to move
+             */
+            Vertex(Vertex&& other) noexcept = default;
+
+            /**
+             * @brief Destructor
+             */
+            ~Vertex() noexcept = default;
+
+            /**
+             * @brief Copy assignment operator
+             * 
+             * @param other Vertex to copy
+             * 
+             * @return Reference to this vertex
+             */
+            Vertex& operator=(const Vertex& other) noexcept = default;
+
+            /**
+             * @brief Move assignment operator
+             * 
+             * @param other Vertex to move
+             * 
+             * @return Reference to this vertex
+             */
+            Vertex& operator=(Vertex&& other) noexcept = default;
+
 
         private:
 

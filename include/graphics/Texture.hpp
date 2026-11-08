@@ -487,6 +487,11 @@ namespace tbaricault::graphics
             void setMipmap(int level, const tbaricault::images::Image& image, const tbaricault::math::Vector2<int>& offset = 0) noexcept;
 
             /**
+             * @brief Destroys the texture
+             */
+            void destroy() noexcept override;
+
+            /**
              * @brief Generates mipmap levels for this texture
              */
             void generateMipmap() noexcept;
@@ -524,12 +529,6 @@ namespace tbaricault::graphics
              * @brief Number of mipmap levels
              */
             int _mipmaps = 1;
-
-
-            /**
-             * @brief Destroys the texture
-             */
-            void _destroy() noexcept override;
 
     };
 

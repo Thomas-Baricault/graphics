@@ -92,13 +92,10 @@ namespace tbaricault::graphics
              */
             Shader& operator=(Shader&& other) noexcept = default;
 
-
-        private:
-
             /**
              * @brief Destroys the shader
              */
-            void _destroy() noexcept override;
+            void destroy() noexcept override;
 
     };
 

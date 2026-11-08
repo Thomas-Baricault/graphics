@@ -65,7 +65,7 @@ namespace tbaricault::graphics
 
     Texture::~Texture() noexcept
     {
-        this->_destroy();
+        this->destroy();
         return;
     }
 
@@ -297,6 +297,16 @@ namespace tbaricault::graphics
         );
     }
 
+    void Texture::destroy() noexcept
+    {
+        if (this->_handle)
+        {
+            glDeleteTextures(1, &this->_handle);
+            this->_handle = 0;
+        }
+        return;
+    }
+
     void Texture::generateMipmap() noexcept
     {
         glGenerateTextureMipmap(this->_handle);
@@ -312,16 +322,6 @@ namespace tbaricault::graphics
     Texture::BindGuard Texture::use(unsigned int unit) const noexcept
     {
         return (BindGuard(unit, *this));
-    }
-
-    void Texture::_destroy() noexcept
-    {
-        if (this->_handle)
-        {
-            glDeleteTextures(1, &this->_handle);
-            this->_handle = 0;
-        }
-        return;
     }
 
 }
