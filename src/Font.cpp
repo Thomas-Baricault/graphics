@@ -16,18 +16,6 @@ namespace tbaricault::graphics
     FT_Library Font::_ftLibrary = nullptr;
 
 
-    void Font::init() noexcept
-    {
-        FT_Init_FreeType(&Font::_ftLibrary);
-        return;
-    }
-
-    void Font::cleanup() noexcept
-    {
-        FT_Done_FreeType(Font::_ftLibrary);
-        return;
-    }
-
     Font::Font(FT_Face face) noexcept
         : _face(face)
     {

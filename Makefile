@@ -16,13 +16,19 @@ TARGETS		=	Freetype::Freetype	\
 				tbaricault::math	\
 				tbaricault::str
 
-SRC			=	CubicCurve		\
-				Font			\
-				Path			\
-				QuadraticCurve	\
-				Renderer		\
-				Texture			\
-				utils
+SRC			=	2d/Vertex			\
+				3d/Vertex			\
+				Font				\
+				Framebuffer			\
+				Mesh				\
+				Program				\
+				Projection			\
+				Runtime				\
+				Shader				\
+				Texture				\
+				Transform			\
+				View				\
+				Wrapper
 
 
 all: build
