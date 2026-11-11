@@ -4,13 +4,14 @@ ENV			?=
 
 
 PACKAGES	=	Freetype			\
+				GLEW				\
 				tbaricault_colors	\
 				tbaricault_images	\
 				tbaricault_math		\
 				tbaricault_str
 
 TARGETS		=	Freetype::Freetype	\
-				glew32				\
+				GLEW::glew			\
 				tbaricault::colors	\
 				tbaricault::images	\
 				tbaricault::math	\
